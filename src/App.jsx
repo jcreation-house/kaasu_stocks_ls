@@ -6,7 +6,11 @@ import {
   stocksListAction,
   stocksListLoader,
 } from "./pages/StocksList";
-import { StocksAccounts } from "./pages/StocksAccounts";
+import {
+  StocksAccounts,
+  StocksAccountsAction,
+  StocksAccountsLoader,
+} from "./pages/StocksAccounts";
 import { StocksTransactions } from "./pages/StocksTransactions";
 
 function App() {
@@ -31,15 +35,15 @@ function App() {
           // errorElement: <Error />,
         },
         {
-          path: "accounts",
+          path: "stocks_accounts",
           element: <StocksAccounts />,
-          // loader: accountsLoader,
-          // action: accountsAction,
+          loader: StocksAccountsLoader,
+          action: StocksAccountsAction,
           // errorElement: <Error />,
         },
         {
-          path: "transactions",
-          // element: <StocksTransactions />,
+          path: "stocks_transactions",
+          element: <StocksTransactions />,
           // loader: transactionsLoader,
           // action: transactionsAction,
           // errorElement: <Error />,

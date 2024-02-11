@@ -1,12 +1,13 @@
-import { Button, Flex, Space, Table, Typography } from "antd";
+import { Button, Space } from "antd";
 import { StocksAddForm } from "../components/forms/StocksAddForm";
 import { deleteItem, getItem, saveItem } from "../backend";
 import { redirect, useLoaderData, useSubmit } from "react-router-dom";
 import { DeleteOutlined } from "@ant-design/icons";
+import { TableViewer } from "../components/TableViewer";
 
 export const StocksList = () => {
   const handleSubmit = useSubmit();
-  const { Title } = Typography;
+
   const { companiesStocks } = useLoaderData();
 
   const columns = [
@@ -30,7 +31,15 @@ export const StocksList = () => {
         <Space
         //  style={{ justifyContent: "center", width: "100%" }}
         >
-          <Button onClick={() => handleDelete(record.key)} danger>
+          <Button
+            onClick={() =>
+              handleSubmit(
+                { key: "stocks", id: record.key },
+                { method: "delete", action: "/stocks_list" }
+              )
+            }
+            danger
+          >
             <DeleteOutlined />
           </Button>
         </Space>
@@ -38,24 +47,12 @@ export const StocksList = () => {
     },
   ];
 
-  const handleDelete = (id) =>
-    handleSubmit(
-      { key: "stocks", id },
-      { method: "delete", action: "/stocks_list" }
-    );
   return (
-    <Table
-      bordered
-      dataSource={companiesStocks}
+    <TableViewer
+      data={companiesStocks}
       columns={columns}
-      title={() => (
-        <Flex justify="space-between" align="center">
-          <Title style={{ textAlign: "center", margin: "10px" }} level={4}>
-            Stock List
-          </Title>
-          <StocksAddForm _action="create" />
-        </Flex>
-      )}
+      title={"Stock List"}
+      child={<StocksAddForm />}
     />
   );
 };

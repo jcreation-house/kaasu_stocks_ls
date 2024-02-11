@@ -16,16 +16,16 @@ export const StocksRootLayout = () => {
       //   icon: <MailOutlined />,
     },
     {
-      label: <Link to="transactions">Transactions</Link>,
-      key: "/transactions",
+      label: <Link to="/stocks_accounts">Transactions</Link>,
+      key: "/stocks_transactions",
     },
     {
-      label: <Link to="accounts">Accounts</Link>,
-      key: "/accounts",
+      label: <Link to="/stocks_accounts">Accounts</Link>,
+      key: "/stocks_accounts",
     },
     {
       key: "/stocks_list",
-      label: <Link to={"/stocks_list"}>stocks list</Link>,
+      label: <Link to={"/stocks_list"}>Stocks list</Link>,
     },
   ];
 
