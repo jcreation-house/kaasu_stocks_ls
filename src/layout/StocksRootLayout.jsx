@@ -16,7 +16,7 @@ export const StocksRootLayout = () => {
       //   icon: <MailOutlined />,
     },
     {
-      label: <Link to="/stocks_accounts">Transactions</Link>,
+      label: <Link to="stocks_transactions">Transactions</Link>,
       key: "/stocks_transactions",
     },
     {

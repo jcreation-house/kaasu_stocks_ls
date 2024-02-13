@@ -11,7 +11,11 @@ import {
   StocksAccountsAction,
   StocksAccountsLoader,
 } from "./pages/StocksAccounts";
-import { StocksTransactions } from "./pages/StocksTransactions";
+import {
+  StocksTrans,
+  StocksTransAction,
+  StocksTransLoader,
+} from "./pages/StocksTransactions";
 
 function App() {
   const router = createBrowserRouter([
@@ -43,9 +47,9 @@ function App() {
         },
         {
           path: "stocks_transactions",
-          element: <StocksTransactions />,
-          // loader: transactionsLoader,
-          // action: transactionsAction,
+          element: <StocksTrans />,
+          loader: StocksTransLoader,
+          action: StocksTransAction,
           // errorElement: <Error />,
         },
       ],
