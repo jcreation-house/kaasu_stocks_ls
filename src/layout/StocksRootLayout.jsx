@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useSubmit } from "react-router-dom";
 import { Flex, Layout, Menu, Switch, Typography } from "antd";
 
 export const StocksRootLayout = () => {
+  const handleSubmit = useSubmit();
   const { Title } = Typography;
   const { Header, Content } = Layout;
 
@@ -34,10 +35,17 @@ export const StocksRootLayout = () => {
       <Header style={{ background: "white" }}>
         <Flex justify={"space-between"} align={"center"}>
           <Title level={4}>{userName}'s Dashboard</Title>
-          {/* //toggle themes need to work on
-           <Flex wrap="wrap" gap="small" align={"center"}>
-            <Switch size="small">Dark/Light</Switch>
-          </Flex> */}
+          //toggle themes need to work on
+          <Flex wrap="wrap" gap="small" align={"center"}>
+            <Switch
+              // onChange={(e) => {
+              //   handleSubmit(e, { method: "post", action: "/" });
+              // }}
+              size="small"
+            >
+              Dark/Light
+            </Switch>
+          </Flex>
         </Flex>
       </Header>
       <Content>

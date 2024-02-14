@@ -1,4 +1,9 @@
-import { redirect, useLoaderData, useSubmit } from "react-router-dom";
+import {
+  redirect,
+  useLoaderData,
+  useLocation,
+  useSubmit,
+} from "react-router-dom";
 import { deleteItem, getItem, saveItem } from "../backend";
 import { TableViewer } from "../components/TableViewer";
 import { StocksAccountForm } from "../components/forms/StocksAccountForm";
@@ -8,7 +13,6 @@ import { DeleteOutlined } from "@ant-design/icons";
 export const StocksAccounts = () => {
   const { accounts } = useLoaderData();
   const handleSubmit = useSubmit();
-
   const columns = [
     {
       title: "Name",
@@ -99,6 +103,5 @@ export const StocksAccountsAction = async ({ request: req }) => {
     default:
       break;
   }
-
   return redirect("/stocks_accounts");
 };
