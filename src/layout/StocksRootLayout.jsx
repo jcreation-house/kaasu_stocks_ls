@@ -1,13 +1,21 @@
 import { useState } from "react";
 import { Link, Outlet, useLocation, useSubmit } from "react-router-dom";
-import { Flex, Layout, Menu, Switch, Typography } from "antd";
+import {
+  ConfigProvider,
+  Flex,
+  Layout,
+  Menu,
+  Switch,
+  Typography,
+  theme,
+} from "antd";
 
 export const StocksRootLayout = () => {
-  const handleSubmit = useSubmit();
   const { Title } = Typography;
   const { Header, Content } = Layout;
 
   const [current, setCurrent] = useState(useLocation().pathname);
+  const [isDark, setIsDark] = useState(false);
 
   const userName = "Alpha"; // static name now >> has to add functon for username
   const items = [
@@ -31,34 +39,35 @@ export const StocksRootLayout = () => {
   ];
 
   return (
-    <Layout>
-      <Header style={{ background: "white" }}>
-        <Flex justify={"space-between"} align={"center"}>
-          <Title level={4}>{userName}'s Dashboard</Title>
-          //toggle themes need to work on
-          <Flex wrap="wrap" gap="small" align={"center"}>
-            <Switch
-              // onChange={(e) => {
-              //   handleSubmit(e, { method: "post", action: "/" });
-              // }}
-              size="small"
-            >
-              Dark/Light
-            </Switch>
+    <ConfigProvider
+      theme={{
+        algorithm: isDark ? theme.darkAlgorithm : theme.lightAlgorithm,
+      }}
+    >
+      <Layout style={{ height: "inherit" }}>
+        <Header style={{ background: isDark ? "black" : "white" }}>
+          <Flex justify={"space-between"} align={"center"}>
+            <Title level={4}>{userName}'s Dashboard</Title>
+            {/* //toggle themes need to work on */}
+            <Flex wrap="wrap" gap="small" align={"center"}>
+              <Switch onChange={(e) => setIsDark(e)} size="small">
+                Dark/Light
+              </Switch>
+            </Flex>
           </Flex>
-        </Flex>
-      </Header>
-      <Content>
-        <Menu
-          onClick={(e) => setCurrent(e.key)}
-          selectedKeys={[current]}
-          mode="horizontal"
-          items={items}
-        />
-        <Content style={{ padding: "10px 20px" }}>
-          <Outlet />
+        </Header>
+        <Content>
+          <Menu
+            onClick={(e) => setCurrent(e.key)}
+            selectedKeys={[current]}
+            mode="horizontal"
+            items={items}
+          />
+          <Content style={{ padding: "10px 20px" }}>
+            <Outlet />
+          </Content>
         </Content>
-      </Content>
-    </Layout>
+      </Layout>
+    </ConfigProvider>
   );
 };

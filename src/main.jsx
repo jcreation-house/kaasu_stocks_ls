@@ -6,7 +6,7 @@ import { ConfigProvider, theme } from "antd";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ConfigProvider
+    {/* <ConfigProvider
       theme={{
         // 1. Use dark algorithm
         algorithm: theme.darkAlgorithm,
@@ -14,8 +14,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         // 2. Combine dark algorithm and compact algorithm
         // algorithm: [theme.darkAlgorithm, theme.compactAlgorithm],
       }}
-    >
-      <App />
-    </ConfigProvider>
+    > */}
+    <App />
+    {/* </ConfigProvider> */}
   </React.StrictMode>
 );

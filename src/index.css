@@ -1,0 +1,9 @@
+html {
+  height: 100dvh !important;
+}
+body,
+main,
+#root {
+  margin: 0;
+  height: 100% !important;
+}
