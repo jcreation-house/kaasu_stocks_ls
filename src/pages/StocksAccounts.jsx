@@ -1,18 +1,17 @@
-import {
-  redirect,
-  useLoaderData,
-  useLocation,
-  useSubmit,
-} from "react-router-dom";
+import { redirect, useLoaderData, useSubmit } from "react-router-dom";
 import { deleteItem, getItem, saveItem } from "../backend";
 import { TableViewer } from "../components/TableViewer";
 import { StocksAccountForm } from "../components/forms/StocksAccountForm";
-import { Button, Space } from "antd";
+import { Button, Popconfirm, Space } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 
 export const StocksAccounts = () => {
   const { accounts } = useLoaderData();
   const handleSubmit = useSubmit();
+  const cancel = (e) => {
+    null;
+  };
+
   const columns = [
     {
       title: "Name",
@@ -52,17 +51,23 @@ export const StocksAccounts = () => {
         <Space
         //  style={{ justifyContent: "center", width: "100%" }}
         >
-          <Button
-            onClick={() =>
+          <Popconfirm
+            title="Delete the account?"
+            description="Are you sure to delete"
+            onConfirm={() =>
               handleSubmit(
                 { key: "accounts", id: record.key },
                 { method: "delete", action: "/stocks_accounts" }
               )
             }
-            danger
+            onCancel={cancel}
+            okText="Yes"
+            cancelText="No"
           >
-            <DeleteOutlined />
-          </Button>
+            <Button danger>
+              <DeleteOutlined />
+            </Button>
+          </Popconfirm>
         </Space>
       ),
     },

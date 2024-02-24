@@ -16,8 +16,10 @@ import {
   StocksTransAction,
   StocksTransLoader,
 } from "./pages/StocksTransactions";
+import { message } from "antd";
 
 function App() {
+  const [messageApi, contextHolder] = message.useMessage();
   const router = createBrowserRouter([
     {
       path: "/",
@@ -57,6 +59,7 @@ function App() {
   ]);
   return (
     <>
+      {contextHolder}
       <RouterProvider router={router} />
     </>
   );
